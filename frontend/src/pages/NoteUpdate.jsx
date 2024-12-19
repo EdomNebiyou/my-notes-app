@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { updateNote } from '../features/notesSlice';
 import { updateNote as updateNoteAPI } from '../utils/api';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 export default function NoteUpdate(){
     const dispatch = useDispatch();
     const navigate=useNavigate()
@@ -20,6 +21,7 @@ export default function NoteUpdate(){
     const response = await updateNoteAPI(editedNote._id,noteData, localStorage.getItem('token'));
     dispatch(updateNote(response.data));
     navigate("/notes")
+    toast.success("note updated successfully")
   };
     return(
         <>

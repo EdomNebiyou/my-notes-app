@@ -18,6 +18,7 @@ const Register = () => {
       const response = await registerUser({ name, email, password });
       dispatch(setUser(response.data));
       navigate("/")
+      toast.success("registered successfully")
     } catch (error) {
       console.log(error)
       toast.error(error.response.data.msg)

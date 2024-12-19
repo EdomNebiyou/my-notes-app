@@ -17,6 +17,7 @@ const NoteForm = () => {
     dispatch(addNote(response.data));
     setTitle('');
     setContent('');
+    toast.success('note added successfullyh')
     } catch (error) {
       console.log(error)
       toast.error(error.response.data.msg)

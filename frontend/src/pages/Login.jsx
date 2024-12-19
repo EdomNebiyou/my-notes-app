@@ -23,6 +23,7 @@ const Login = () => {
       const response = await loginUser({ email, password });
       dispatch(setUser(response.data));
       navigate('/')
+      toast.success("logged in successfully")
     } catch (error) {
       console.log(error)
       toast.error(error.response.data.msg)

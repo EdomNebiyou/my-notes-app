@@ -2,6 +2,7 @@ import { useDispatch } from 'react-redux';
 import { deleteNote, setEditedNote } from '../features/notesSlice';
 import { deleteNote as deleteNoteAPI } from '../utils/api';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const NoteItem = ({ note }) => {
   const dispatch = useDispatch();
@@ -9,6 +10,7 @@ const NoteItem = ({ note }) => {
   const handleDelete = async () => {
     await deleteNoteAPI(note._id, localStorage.getItem('token'));
     dispatch(deleteNote(note._id));
+    toast.success("note deleted successfully")
   };
   function handleNavigateToUpdate(note){
     dispatch(setEditedNote(note))
