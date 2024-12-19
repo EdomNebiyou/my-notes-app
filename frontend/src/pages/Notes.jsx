@@ -12,8 +12,12 @@ const Notes = () => {
 
   useEffect(() => {
     const fetchNotes = async () => {
-      const response = await getNotesAPI(token);
+      try {
+        const response = await getNotesAPI(token);
       dispatch(setNotes(response.data));
+      } catch (error) {
+        console.log(error)
+      }
     };
     fetchNotes();
   }, [dispatch, token,notes]);

@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { setUser } from '../features/authSlice';
 import { registerUser } from '../utils/api';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const Register = () => {
   const navigate=useNavigate()
@@ -19,6 +20,7 @@ const Register = () => {
       navigate("/")
     } catch (error) {
       console.log(error)
+      toast.error(error.response.data.msg)
     }
   };
 

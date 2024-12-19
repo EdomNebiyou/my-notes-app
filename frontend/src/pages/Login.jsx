@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from '../features/authSlice';
 import { loginUser } from '../utils/api';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const Login = () => {
   const { user } = useSelector((state) => state.auth);
@@ -24,6 +25,7 @@ const Login = () => {
       navigate('/')
     } catch (error) {
       console.log(error)
+      toast.error(error.response.data.msg)
     }
   };
 

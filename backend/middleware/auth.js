@@ -14,7 +14,7 @@ const auth = async (req, res, next) => {
     next();
   } catch (err) {
     console.error(err.message);
-    res.status(401).send('Invalid token, authorization denied');
+    res.status(401).json({msg:'Invalid token, authorization denied'});
   }
 };
 

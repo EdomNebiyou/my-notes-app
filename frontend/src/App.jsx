@@ -11,9 +11,8 @@ import Register from "./pages/Register";
 import Notes from "./pages/Notes";
 import RootLayout from "./layout/RootLayout";
 import PrivateRoute from "./components/PrivateRoute";
-import { Provider } from "react-redux";
-import NoteUpdate from "./components/NoteUpdate";
 import NoteLayout from "./layout/NoteLayout";
+import NoteUpdate from "./pages/NoteUpdate";
 
 const App = () => {
   const router = createBrowserRouter(

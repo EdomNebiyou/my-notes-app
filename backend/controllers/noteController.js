@@ -5,7 +5,9 @@ import Note from '../models/Note.js';
 // @access  Private
 const createNote = async (req, res) => {
   const { title, content } = req.body;
-
+  if(!title || !content){
+    return res.status(400).json({msg:"all fields are required"})
+  }
   try {
     const newNote = new Note({
       title,
@@ -18,7 +20,7 @@ const createNote = async (req, res) => {
     res.status(201).json(savedNote);
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Server Error');
+    res.status(500).json({msg:'Server Error'});
   }
 };
 
@@ -31,7 +33,7 @@ const getNotes = async (req, res) => {
     res.json(notes);
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Server Error');
+    res.status(500).json({msg:'Server Error'});
   }
 };
 
@@ -49,7 +51,7 @@ const getNoteById = async (req, res) => {
     res.json(note);
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Server Error');
+    res.status(500).json({msg:'Server Error'});
   }
 };
 
@@ -77,7 +79,7 @@ const updateNote = async (req, res) => {
     res.json(note);
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Server Error');
+    res.status(500).json({msg:'Server Error'});
   }
 };
 
@@ -102,7 +104,7 @@ const deleteNote = async (req, res) => {
     res.json({ msg: 'Note removed' });
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Server Error');
+    res.status(500).json({msg:'Server Error'});
   }
 };
 

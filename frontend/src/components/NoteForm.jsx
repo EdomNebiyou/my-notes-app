@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addNote } from '../features/notesSlice';
 import { createNote as createNoteAPI } from '../utils/api';
+import { toast } from 'react-toastify';
 
 const NoteForm = () => {
   const dispatch = useDispatch();
@@ -11,10 +12,15 @@ const NoteForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const noteData = { title, content };
-    const response = await createNoteAPI(noteData, localStorage.getItem('token'));
+    try {
+      const response = await createNoteAPI(noteData, localStorage.getItem('token'));
     dispatch(addNote(response.data));
     setTitle('');
     setContent('');
+    } catch (error) {
+      console.log(error)
+      toast.error(error.response.data.msg)
+    }
   };
 
   return (
