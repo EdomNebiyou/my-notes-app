@@ -13,6 +13,7 @@ import RootLayout from "./layout/RootLayout";
 import PrivateRoute from "./components/PrivateRoute";
 import { Provider } from "react-redux";
 import NoteUpdate from "./components/NoteUpdate";
+import NoteLayout from "./layout/NoteLayout";
 
 const App = () => {
   const router = createBrowserRouter(
@@ -22,7 +23,8 @@ const App = () => {
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
         <Route path="" element={<PrivateRoute />}>
-          <Route path="notes" element={<Notes />}>
+          <Route path="notes" element={<NoteLayout />}>
+            <Route index element={<Notes />} />
             <Route path="update" element={<NoteUpdate />} />
           </Route>
         </Route>

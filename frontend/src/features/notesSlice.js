@@ -4,6 +4,9 @@ const notesSlice = createSlice({
   name: 'notes',
   initialState: {
     notes: [],
+    editedNote:localStorage.getItem("editedNote")
+    ? JSON.parse(localStorage.getItem("editedNote"))
+    : null,
     loading: false,
     error: null
   },
@@ -19,9 +22,14 @@ const notesSlice = createSlice({
       if (index !== -1) {
         state.notes[index] = action.payload;
       }
+      localStorage.removeItem('editedNote')
     },
     deleteNote: (state, action) => {
       state.notes = state.notes.filter(note => note.id !== action.payload);
+    },
+    setEditedNote:(state,action)=>{
+      localStorage.setItem('editedNote',JSON.stringify(action.payload))
+      state.editedNote=action.payload
     },
     setLoading: (state, action) => {
       state.loading = action.payload;
@@ -32,5 +40,5 @@ const notesSlice = createSlice({
   }
 });
 
-export const { setNotes, addNote, updateNote, deleteNote, setLoading, setError } = notesSlice.actions;
+export const { setNotes, addNote, updateNote, deleteNote,setEditedNote, setLoading, setError } = notesSlice.actions;
 export default notesSlice.reducer;

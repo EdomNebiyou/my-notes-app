@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { deleteNote } from '../features/notesSlice';
+import { deleteNote, setEditedNote } from '../features/notesSlice';
 import { deleteNote as deleteNoteAPI } from '../utils/api';
 import { useNavigate } from 'react-router-dom';
 
@@ -10,6 +10,10 @@ const NoteItem = ({ note }) => {
     await deleteNoteAPI(note._id, localStorage.getItem('token'));
     dispatch(deleteNote(note._id));
   };
+  function handleNavigateToUpdate(note){
+    dispatch(setEditedNote(note))
+    navigate('update')
+  }
 
   return (
     <div className="bg-white p-4 rounded-lg shadow-md mb-4">
@@ -24,7 +28,7 @@ const NoteItem = ({ note }) => {
         </button>
         <button
           className="mt-2 text-yellow-500 hover:text-yellow-700"
-          onClick={()=>navigate('update')}
+          onClick={()=>handleNavigateToUpdate(note)}
         >
           update
         </button>
